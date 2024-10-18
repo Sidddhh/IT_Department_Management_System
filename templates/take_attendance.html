@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block title %}Take Attendance{% endblock %}
+
+{% block content %}
+    <h1>Take Attendance</h1>
+
+    <form method="GET" action="{{ url_for('view_students') }}">
+        <label for="class_id">Select Class:</label>
+        <select name="class_id" id="class_id" required>
+            <option value="">Select a class</option>
+            {% for class in classes %}
+                <option value="{{ class.id }}" {% if class.id == selected_class_id %}selected{% endif %}>
+                    {{ class.subject }} - {{ class.year }} - {{ class.batch }}
+                </option>
+            {% endfor %}
+        </select>
+        
+        <label for="date">Select Date:</label>
+        <input type="date" name="date" id="date" required>
+        
+        <button type="submit">View Students</button>
+    </form>
+{% endblock %}

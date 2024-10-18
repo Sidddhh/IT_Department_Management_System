@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}View Timetables{% endblock %}
+
+{% block content %}
+    <h2>Timetables</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Filename</th>
+                <th>Uploaded By</th>
+                {% if session['role'] == 'admin' %}
+                    <th>Action</th>
+                {% endif %}
+            </tr>
+        </thead>
+        <tbody>
+            {% for timetable in timetables %}
+                <tr>
+                    <td><a href="{{ url_for('static', filename=timetable.file_path) }}">{{ timetable.file_path }}</a></td>
+                    <td>{{ timetable.uploaded_by }}</td>
+                    {% if session['role'] == 'admin' %}
+                        <td>
+                            <form action="{{ url_for('delete_timetable', timetable_id=timetable.id) }}" method="post" style="display:inline;">
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
+                    {% endif %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

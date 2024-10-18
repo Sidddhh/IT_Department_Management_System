@@ -1,0 +1,110 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 15px 0; /* Increased padding for better header visibility */
+}
+
+header h1 {
+    margin: 0;
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+    padding-bottom: 100px; /* Ensures content doesn't overlap with footer */
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px 0; /* Padding for footer */
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
+form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input, select, button {
+    display: block;
+    width: 100%;
+    margin: 5px 0;
+    padding: 10px;
+}
+
+button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555; /* Change button color on hover for better interactivity */
+}
+
+h1, h3 {
+    margin: 20px 0; /* Space above and below headings */
+}
+
+ul {
+    padding: 0; /* Remove default padding */
+    list-style-type: none; /* Remove bullet points from lists */
+}
+
+li {
+    padding: 5px 0; /* Space between list items */
+}
+
+.flash-messages {
+    list-style-type: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.flash-messages li {
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+.flash-messages .success {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+.flash-messages .error {
+    background-color: #f2dede;
+    color: #a94442;
+}

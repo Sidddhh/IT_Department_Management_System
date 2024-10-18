@@ -1,0 +1,50 @@
+<!-- manage_students_teachers.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Students and Teachers</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h2>Manage Students and Teachers</h2>
+    
+    <form method="post">
+        <label for="subject">Subject:</label>
+        <input type="text" id="subject" name="subject" required>
+        
+        <label for="year">Year:</label>
+        <input type="text" id="year" name="year" required>
+        
+        <label for="batch">Batch:</label>
+        <input type="text" id="batch" name="batch" required>
+        
+        <label for="teacher_id">Teacher:</label>
+        <select id="teacher_id" name="teacher_id" required>
+            {% for teacher in teachers %}
+                <option value="{{ teacher.id }}">{{ teacher.username }}</option>
+            {% endfor %}
+        </select>
+        
+        <button type="button" id="fetch_students">Select Students</button>
+        <br><br>
+        <div id="student_list">
+            <!-- Students will be dynamically populated here -->
+        </div>
+        
+        <button type="submit">Submit Class</button>
+    </form>
+
+    <script>
+        $(document).ready(function(){
+            $('#fetch_students').on('click', function(){
+                $.get('{{ url_for("get_students") }}', function(data) {
+                    $('#student_list').html(data);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

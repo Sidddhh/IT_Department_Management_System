@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}College IT Department{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>College IT Department</h1>
+        <nav>
+            <ul>
+                {% if session.get('username') %}
+                    <li><a href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                    {% if session['role'] == 'admin' %}
+                        <li><a href="{{ url_for('upload_timetable') }}">Upload Timetable</a></li>
+                        <li><a href="{{ url_for('manage_students_teachers') }}">Manage Students and Teachers</a></li>
+                    {% endif %}
+                    {% if session['role'] in ['teacher', 'student'] %}
+                       
+                    {% endif %}
+                    <li><a href="{{ url_for('logout') }}">Logout</a></li>
+                {% else %}
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('apply') }}">Apply for Job/Admission</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </header>
+    <main>
+        {% with messages = get_flashed_messages(with_categories=True) %}
+            {% if messages %}
+                <ul class="flash-messages">
+                    {% for category, message in messages %}
+                        <li class="{{ category }}">{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        {% endwith %}
+        
+        {% block content %}
+        {% endblock %}
+    </main>
+    <footer>
+        <p>&copy; 2024 College IT Department</p>
+    </footer>
+</body>
+</html>

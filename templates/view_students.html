@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}View Students{% endblock %}
+
+{% block content %}
+    <h1>Students for Class</h1>
+    
+    <form method="POST" action="{{ url_for('mark_attendance') }}">
+        <input type="hidden" name="class_id" value="{{ class_id }}">
+        <input type="hidden" name="date" value="{{ date }}">
+        
+        <h2>Mark Attendance</h2>
+        <ul>
+            {% for student in students %}
+                <li>
+                    <label>
+                        <input type="checkbox" name="attendance_{{ student.id }}" value="present"> 
+                        {{ student.username }} - Present
+                    </label>
+                    <label>
+                        <input type="checkbox" name="attendance_{{ student.id }}" value="absent"> 
+                        {{ student.username }} - Absent
+                    </label>
+                </li>
+            {% endfor %}
+        </ul>
+        <button type="submit">Save Attendance</button>
+    </form>
+{% endblock %}

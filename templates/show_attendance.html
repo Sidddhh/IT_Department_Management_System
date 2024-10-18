@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Attendance Records{% endblock %}
+
+{% block content %}
+    <h2>Attendance Records</h2>
+    
+    <table>
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in attendance %}
+                <tr>
+                    <td>{{ record.username }}</td>
+                    <td>{{ record.status }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+    <a href="{{ url_for('take_attendance', class_id=request.args.get('class_id')) }}">Back to Take Attendance</a>
+{% endblock %}
